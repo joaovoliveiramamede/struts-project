@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>struts</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <struts.version>2.5.26</struts.version>
+    <log4j2.version>2.24.3</log4j2.version>
+  </properties>
+
+  <dependencies>
+
+    <!-- Struts -->
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts2-core</artifactId>
+      <version>${struts.version}</version>
+    </dependency>
+
+    <!-- Log4j2 -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>struts</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+      </plugin>
+
+      <!-- Struts Plugin -->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.7.v20170914</version>
+        <configuration>
+          <webApp>
+            <contextPath>/${project.build.finalName}</contextPath>
+          </webApp>
+          <stopKey>CTRL+C</stopKey>
+          <stopPort>8999</stopPort>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <scanTargets>
+            <scanTarget>src/main/webapp/WEB-INF/web.xml</scanTarget>
+          </scanTargets>
+          <jvmArgs>
+            --add-opens=java.base/java.util=ALL_UNNAMED
+          </jvmArgs>
+        </configuration>
+      </plugin>
+
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
