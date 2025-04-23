@@ -5,6 +5,10 @@
   <head><title>Hello World</title></head>
   <body>
     <h2>Message:</h2>
-    <s:property value="messageStore.message"/>
+    <s:property value="messageStore"/>
+
+    <p>I've said hello
+     <s:property value="helloCount" /> times!
+    </p>
   </body>
 </html>
